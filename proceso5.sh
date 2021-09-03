@@ -22,6 +22,16 @@ Procesos(){
     done
 }
 
+Memoria(){
+    
+    mem=$(cat /proc/meminfo | grep 'MemTotal' | awk '{print $2}')
+    
+    men1=$(echo "scale=1;$mem/1024/1024" | bc -l )
+
+    echo -e "Total  \t\t\tTotal2\n$men1\t\t\t$men1"
+
+}
+
 
 
 
@@ -35,7 +45,8 @@ case "$option1" in
       Procesos $false;;
 
     -m) 
-       echo "script m ${2}";;
+       #echo "script m ${2}"
+       Memoria;;
 
      -help)
        echo "ayuda";;
